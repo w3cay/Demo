@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>分享Demo</title>
+	<style type="text/css">
+	*{
+		padding: 0px;
+		margin: 0px;
+	}
+	#con-box{
+		margin-top: 200px;
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		left: -200px;
+		background: #78B7E7;
+	}
+	#side-box{
+		display: inline-block;
+		width: 30px;
+		height: 50px;
+		border-left: 0px;
+		position: relative;
+		left: 200px;
+		top:75px;
+		background: #53DC3D;
+		color: white;
+		text-align: center;
+		line-height: 24px;
+		font-family: "微软雅黑";
+	}
+	</style>
+</head>
+<body>
+	<div id="con-box">
+		<div id="side-box">分享</div>
+	</div>
+	
+
+</body>
+	<script type="text/javascript">
+	
+		window.onload=function() {
+
+			var side =document.getElementById('side-box');
+
+			var con =document.getElementById('con-box');
+
+			con.onmouseover=function () {
+				slide(0);
+			}
+			con.onmouseout=function () {
+				slide(-200);
+			}
+
+			//定时器
+			var timer=null;
+
+			function slide(iTarger) {
+
+				clearInterval(timer);
+
+				var speed =0;
+
+				var con =document.getElementById('con-box');
+
+			    timer=setInterval(function(){
+
+			    	//比较当前值和目标值。如果小于，就是正向运动；大于，反向运动；
+
+					if (con.offsetLeft < iTarger ) {
+						speed = 20;
+					} else{
+						speed = -20;
+					};
+				 	if(con.offsetLeft==iTarger){
+
+				 		//如果当前值等于目标值，说明走到终点，清楚计时器。
+				 		clearInterval(timer);
+
+				 	}else{
+ 						con.style.left = con.offsetLeft+speed+'px';
+				 	}		
+				},30);
+			}
+
+		}
+	</script>
+</html>
