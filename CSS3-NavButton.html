@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS3-NavButton</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+	body{
+		background-color:rgb(146, 146, 218);
+	}
+	.container{
+		width: 40px;
+		margin:280px auto;
+	}
+	.btn{
+		color: #fff;
+		padding: 0px;
+		position: relative;
+		height: 38px;
+		cursor: pointer;
+	}
+	.btn li{
+		display:block;
+		width: 32px;
+		border: 2px solid #fff;
+		margin-top: 8px;
+	}
+	.btn:hover li:nth-child(1) {
+
+		-webkit-transform: rotate(45deg);
+		-moz-transform:  rotate(45deg);
+		-moz-transform:  rotate(45deg);
+		 transform: rotate(45deg);
+		 transition: transform 0.2s;
+		 position: relative;
+		 top:11px;
+	}
+	.btn:hover li:nth-child(2) {
+		-webkit-transform: rotate(-45deg);
+		-moz-transform:  rotate(-45deg);
+		-moz-transform:  rotate(-45deg);
+		transform: rotate(-45deg);
+		transition: transform 0.2s;
+	}
+	.btn:hover li:nth-child(3) {
+			display: none;
+	}
+	</style>
+</head>
+<body>
+<div class="container">
+	<ul class="btn">
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+</body>
+</html>
