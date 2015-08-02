@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>轮播器</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+	*{
+		padding:0px;
+		margin: 0px;
+	}
+	body{
+		background:#958282;
+		color: #fff;
+	}
+	#carousel{
+		height: 550px;
+		width: 825px;
+		overflow: hidden;
+		margin: 50px auto 0px;
+		position: relative;
+		text-align: center;
+	}
+	#list{
+		width: 5775px;
+		position: absolute;
+		z-index: 1;
+		left:-825px;
+	}
+	#list > img{
+		width: 825px;
+		float: left;
+
+	}
+	#buttons{
+		position: relative;
+		z-index: 2;
+		text-align: center;
+		display: inline-block;
+		top:500px;
+	}
+	#buttons > li{
+		cursor: pointer;
+		width: 10px;
+		height: 10px;
+		color: rgba(255,255,255,0.8);
+		border:1px solid;
+		float: left;
+		margin-right: 15px;
+		list-style: none;
+		border-radius: 50%;
+	}
+	#buttons li.on{
+		background: rgba(255,255,255,0.8);
+	}
+
+	#buttons > li:last-of-type{
+		margin-right: 0px;
+	}
+	.sidebtn{
+		font-family: serif;
+		display: block;
+		z-index: 2;
+		position: relative;
+		font-weight: bolder;
+		font-size: 48px;
+		top:38%;
+		display: none;
+	}
+	.sidebtn > a {
+		text-decoration: none;
+		display: inline-block;
+		color: #DCC5C5;
+		width: 50px;
+		height: 100px;
+		line-height: 100px;
+		outline: none;
+		
+	}
+	.sidebtn > a:hover{
+		color: rgba(255,255,255,0.5);
+		background:rgba(21, 20, 20, .36);
+	}
+	#prev{margin-right: 600px;}
+	</style>
+</head>
+<body>
+	<div id="carousel">
+	<!-- 图片列表 -->
+		<div id="list">
+			<img src="5.jpeg">
+			<img src="1.jpeg">
+			<img src="2.jpg">
+			<img src="3.jpg">
+			<img src="4.jpeg">
+			<img src="5.jpeg">
+			<img src="1.jpeg">
+		</div>
+		<ul id="buttons">
+			<li index="0" class="on"></li>
+			<li index="1"></li>
+			<li index="2"></li>
+			<li index="3"></li>
+			<li index="4"></li>
+		</ul>
+		<div  class="sidebtn" id="sidebtn">
+		<a href="javacript:;" id="prev">&lt;</a>
+		<a href="javacript:;" id="next">&gt;</a>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload=function(){
+		var caro = document.getElementById("carousel");
+		var list = document.getElementById("list");
+		var btns = document.getElementById("buttons").getElementsByTagName('li');
+		var sidebtn = document.getElementById("sidebtn");
+		var prev = document.getElementById("prev");
+		var next = document.getElementById("next");
+
+		var len = 0 ;
+		var timer =null;
+		var iTarger =-825;
+		var index =0;
+		next.onclick = function () {
+
+			animate(-825);
+			showon ();
+			console.log(index);
+		}
+		prev.onclick = function () {
+			animate(825);
+			showon ();
+		}
+
+		for (var i = 0; i < btns.length; i++) {
+			btns[i].onclick=function () {
+			var	getIndex = parseInt(this.getAttribute("index"));	
+			var	slidelen = -825 * (getIndex - index); 
+			animate (slidelen) ;
+			showon ();
+			index = getIndex;
+			};
+		};
+
+		function showon () {
+		for (var i = 0; i < btns.length; i++) {
+			if (btns[i].className =="on") {
+				btns[i].className ="";
+				break;
+			} ;
+		};
+		 index = list.offsetLeft / -825 -1;
+		 btns[index].className = "on";
+		}
+
+		function animate (len) {
+		   var time = 300;
+           var inteval = 10;
+           var speed = len/(time/inteval);
+           var iTarger= list.offsetLeft+len;
+
+           	 var timer = setTimeout(function () {
+           	 if (speed > 0 &&list.offsetLeft <iTarger || speed <0 &&list.offsetLeft >iTarger) {
+           	 	list.style.left = list.offsetLeft + speed +'px';	
+           	 	console.log(list.offsetLeft);
+           	 	 setTimeout(arguments.callee,inteval);	
+              };
+              		if (list.offsetLeft > -825 ) {
+			     	list.style.left = -4125 +'px';
+			         } else if(list.offsetLeft < -4125 ){
+				   list.style.left = -825 +'px';
+			         };	
+              
+		    },inteval);
+		}
+
+		caro.onmouseover=function () {
+			sidebtn.style.display ="block";
+		};
+		caro.onmouseout=function () {
+			sidebtn.style.display ="none";
+		};
+	}
+</script>
+</html>
