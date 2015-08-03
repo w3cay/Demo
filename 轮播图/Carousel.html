@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>轮播器</title>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+                body{
+                background:#958282;
+                color: #fff;
+                }
+                #carousel{
+                display: block;
+                overflow: hidden;
+                margin: 50px auto 0px;
+                position: relative;
+                text-align: center;
+                }
+                #carousel:hover  .sidebtn{
+                display: block;
+                }
+                #list{
+                position: absolute;
+                z-index: 1;
+                }
+                #list > img{
+                float: left;
+                }
+                #buttons{
+                position: absolute;
+                z-index: 2;
+                text-align: center;
+                display: inline-block;
+                bottom:	30px;
+                transform: translateX(-50%);
+                }
+                #buttons > li{
+                cursor: pointer;
+                width: 10px;
+                height: 10px;
+                color: rgba(255,255,255,0.8);
+                border:1px solid;
+                float: left;
+                margin-right: 15px;
+                list-style: none;
+                border-radius: 50%;
+                }
+                #buttons li.on{
+                background: rgba(255,255,255,0.8);
+                }
+                #buttons > li:last-of-type{
+                margin-right: 0px;
+                }
+                .sidebtn{
+                font-family: serif;
+                display: block;
+                z-index: 2;
+                position: relative;
+                font-weight: bolder;
+                font-size: 36px;
+                top:38%;
+                display: none;
+                }
+                .sidebtn > a {
+                box-sizing: border-box;
+               	position: relative;
+                text-decoration: none;
+                display: inline-block;
+                color: #DCC5C5;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                line-height: 100px;
+                outline: none;
+                }
+                .sidebtn > a:hover{
+                color: rgba(255,255,255,0.5);
+                background:rgba(21, 20, 20, .5);
+                }
+                #next{
+                	padding-left: 20px;
+                	text-align: left;
+                	float: right;
+                	left: 50px;
+                }
+                #prev{
+                	float: left;
+                	padding-right:20px;
+                	text-align: right;
+                	left: -50px;
+                }
+        </style>
+    </head>
+    <body>
+        <div id="carousel">
+            <!-- 图片列表 -->
+            <div id="list">
+                <img src="5.jpeg">
+                <img src="1.jpeg">
+                <img src="2.jpg">
+                <img src="3.jpg">
+                <img src="4.jpeg">
+                <img src="5.jpeg">
+                <img src="1.jpeg">
+            </div>
+            <ul id="buttons">
+                <li index="0" class="on"></li>
+                <li index="1"></li>
+                <li index="2"></li>
+                <li index="3"></li>
+                <li index="4"></li>
+            </ul>
+            <div  class="sidebtn" id="sidebtn">
+                <a href="javacript:;" id="prev">&lt;</a>
+                <a href="javacript:;" id="next">&gt;</a>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+                window.onload=function(){
+                //轮播图宽度
+                var width = 800;
+                //轮播图高度
+                var height = 500;
+                //是否自动播放
+                var animateSwitch = false;
+                var len = 0 ;
+                var timer =null; 
+                var onPlay ;
+                var index =0;
+                //初始化
+                var caro = document.getElementById("carousel");
+                var list = document.getElementById("list");
+                var btns = document.getElementById("buttons").getElementsByTagName('li');
+                var sidebtn = document.getElementById("sidebtn");
+                var prev = document.getElementById("prev");
+                var next = document.getElementById("next");
+                var img  = document.getElementById('list').getElementsByTagName("img");
+                caro.style.width = width + "px";
+                caro.style.height= height + "px";
+                list.style.width = width*img.length + "px";
+                list.style.left  = -width +"px";
+                for (var i = 0; i < img.length; i++) {
+                	img[i].width = parseInt(caro.style.width);
+                	img[i].height= parseInt(caro.style.height);
+                };
+
+                //下一张切换
+                next.onclick = function () {
+                if (onPlay) {
+                return;
+                }
+                animate(-width);
+                if (index == 4) {
+                index= 0;
+                } else{
+                index++;
+                };
+                showon();
+                }
+                //前一张切换
+                prev.onclick = function () {
+                if (onPlay) {
+                      return;
+                }
+                animate(width);
+                if (index == 0) {
+                index= 4;
+                } else{
+                index--;
+                };
+                showon ();
+                }
+                //自动滑动效果
+                function autoslide (){
+                //每隔3s自动切换
+                if (animateSwitch) {
+                	timer = setInterval(function () {
+		            next.onclick();
+		            },3000);
+               	 }
+		        };
+	            //执行自动切换
+	          	  autoslide();
+	            //圆点按钮切换
+	                for (var i = 0; i < btns.length; i++) {
+	                btns[i].onclick=function () {
+	                var	getIndex = parseInt(this.getAttribute("index"));
+	                var	slidelen = -width * (getIndex - index);
+	                animate (slidelen) ;
+	                index = getIndex;
+	                showon ();
+	            };
+                };
+                //选中效果
+                function showon () {
+                for (var i = 0; i < btns.length; i++) {
+                if (btns[i].className =="on") {
+                btns[i].className ="";
+                break;
+                }
+            };
+        btns[index].className = "on";
+                }
+            //图片切换
+                function animate (len) {
+                	onPlay= true;
+          		    var time = 250;
+                    var inteval = 10;
+                    var speed = len/(time/inteval);
+                    var iTarger= list.offsetLeft+len;         
+                    var go =function(){
+                    var nowleft = list.offsetLeft;
+	                    if ((speed > 0 && nowleft < iTarger) || (speed < 0 && nowleft > iTarger)){
+	                        list.style.left = nowleft + speed + 'px';
+	                        setTimeout(go, inteval);
+	          		    } else{
+                            if(iTarger>-width){
+                                list.style.left = -width * 5 + 'px';
+                            }
+                            if(iTarger<(-width * 5)) {
+                                list.style.left = -width +"px";
+                            }
+                            onPlay= false;
+	             	    };
+                    }
+                        go();
+                };
+                //移入移出
+                caro.onmouseover=function () {
+          			  clearInterval(timer);
+                };
+                caro.onmouseout=function () {
+                    autoslide();
+                };
+    }
+    </script>
+</html>
