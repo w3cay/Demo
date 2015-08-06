@@ -1,121 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>轮播器</title>
-        <meta charset="utf-8"/>
-        <style type="text/css">
-                body{
-                background:#958282;
-                color: #fff;
-                }
-                #carousel{
-                display: block;
-                overflow: hidden;
-                margin: 50px auto 0px;
-                position: relative;
-                text-align: center;
-                }
-                #carousel:hover  .sidebtn{
-                display: block;
-                }
-                #list{
-                position: absolute;
-                z-index: 1;
-                }
-                #list > img{
-                float: left;
-                }
-                #buttons{
-                position: absolute;
-                z-index: 2;
-                text-align: center;
-                display: inline-block;
-                bottom:	30px;
-                transform: translateX(-50%);
-                }
-                #buttons > li{
-                cursor: pointer;
-                width: 10px;
-                height: 10px;
-                color: rgba(255,255,255,0.8);
-                border:1px solid;
-                float: left;
-                margin-right: 15px;
-                list-style: none;
-                border-radius: 50%;
-                }
-                #buttons li.on{
-                background: rgba(255,255,255,0.8);
-                }
-                #buttons > li:last-of-type{
-                margin-right: 0px;
-                }
-                .sidebtn{
-                font-family: serif;
-                display: block;
-                z-index: 2;
-                position: relative;
-                font-weight: bolder;
-                font-size: 36px;
-                top:38%;
-                display: none;
-                }
-                .sidebtn > a {
-                box-sizing: border-box;
-               	position: relative;
-                text-decoration: none;
-                display: inline-block;
-                color: #DCC5C5;
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                line-height: 100px;
-                outline: none;
-                }
-                .sidebtn > a:hover{
-                color: rgba(255,255,255,0.5);
-                background:rgba(21, 20, 20, .5);
-                }
-                #next{
-                	padding-left: 20px;
-                	text-align: left;
-                	float: right;
-                	left: 50px;
-                }
-                #prev{
-                	float: left;
-                	padding-right:20px;
-                	text-align: right;
-                	left: -50px;
-                }
-        </style>
-    </head>
-    <body>
-        <div id="carousel">
-            <!-- 图片列表 -->
-            <div id="list">
-                <img src="5.jpeg">
-                <img src="1.jpeg">
-                <img src="2.jpg">
-                <img src="3.jpg">
-                <img src="4.jpeg">
-                <img src="5.jpeg">
-                <img src="1.jpeg">
-            </div>
-            <ul id="buttons">
-                <li index="0" class="on"></li>
-                <li index="1"></li>
-                <li index="2"></li>
-                <li index="3"></li>
-                <li index="4"></li>
-            </ul>
-            <div  class="sidebtn" id="sidebtn">
-                <a href="javacript:;" id="prev">&lt;</a>
-                <a href="javacript:;" id="next">&gt;</a>
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript">
+ <style type="text/css">
+body{color:#fff}#carousel{display:block;overflow:hidden;margin:0 auto 0;position:relative; width:400px;height:280px;}#carousel:hover .sidebtn{display:block}#list{position:absolute;z-index:1}#list img{float:left}#buttons{position:absolute;z-index:2;display:inline-block;bottom:12px;left:16px}#buttons>li{cursor:pointer;width:8px;height:8px;color:rgba(255,255,255,.8);border:1px solid;float:left;margin-right:15px;list-style:none}#buttons li.on{background:#BBAD3C}#buttons>li:last-of-type{margin-right:0}.sidebtn{font-family:serif;display:block;z-index:2;position:relative;font-weight:bolder;font-size:36px;top:38%;display:none}.sidebtn>a{box-sizing:border-box;position:relative;text-decoration:none;display:inline-block;color:#DCC5C5;width:80px;height:80px;border-radius:50%;line-height:80px;outline:0}.sidebtn>a:hover{color:rgba(255,255,255,.5);background:rgba(21,20,20,.5)}#next{padding-left:15px;text-align:left;float:right;left:40px}#prev{float:left;padding-right:15px;text-align:right;left:-40px}</style>
+ <script type="text/javascript">
                 window.onload=function(){
                 //轮播图宽度
                 var width = 800;
@@ -215,9 +100,9 @@
 	                        setTimeout(go, inteval);
 	          		    } else{
                             if(iTarger>-width){
-                                list.style.left = -width * (img.length-2) + 'px';
+                                list.style.left = -width * 5 + 'px';
                             }
-                            if(iTarger<(-width *(img.length-2))) {
+                            if(iTarger<(-width * 5)) {
                                 list.style.left = -width +"px";
                             }
                             onPlay= false;
@@ -234,4 +119,20 @@
                 };
     }
     </script>
-</html>
+<div id="carousel">
+	<div id="list">
+		<a href="http://zzhxzc.icccq.com/mbclh"><img src="http://7xjfze.com1.z0.glb.clouddn.com/car3.jpg" title="郑州面包车拉货" /></a> <a href="http://zzhxzc.icccq.com/mbccz"><img src="http://7xjfze.com1.z0.glb.clouddn.com/car1.jpg" title="郑州面包车出租" /></a> <a href="http://zzhxzc.icccq.com/mbcbj"><img src="http://7xjfze.com1.z0.glb.clouddn.com/car2.jpg" title="郑州面包车搬家" /></a> <a href="http://zzhxzc.icccq.com/mbclh"><img src="http://7xjfze.com1.z0.glb.clouddn.com/car3.jpg" title="郑州面包车拉货" /></a> <a href="http://zzhxzc.icccq.com/mbccz"><img src="http://7xjfze.com1.z0.glb.clouddn.com/car1.jpg" title="郑州面包车出租" /></a></div>
+	<ul id="buttons">
+		<li class="on" index="0">
+			&nbsp;</li>
+		<li index="1">
+			&nbsp;</li>
+		<li index="2">
+			&nbsp;</li>
+	</ul>
+	<div class="sidebtn" id="sidebtn">
+		<a href="javacript:;" id="prev">&lt;</a> <a href="javacript:;" id="next">&gt;</a></div>
+</div>
+<p>
+	&nbsp;</p>
+
