@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>float-clear</title>
+        <meta charset= "utf-8"/>
+        <style type="text/css">
+        body{
+        margin:0px;
+        }
+        .section{
+        width:100%;
+        color:#000;
+        border:1px solid;
+        overflow:hidden; 
+        zoom:1;
+        }
+        .section img{
+        width:200px;
+        height:200px;
+        border:1px solid;
+        float:left;
+        }
+        .section p{
+        float:right;
+        border:1px solid;
+        }
+        .clear{
+        clear:both;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="section">
+            <img src="#" >
+            <p>通过添加clear元素，清除浮动。使包含框能够包裹住框内元素。</p>
+        </div>
+    </body>
+</html>
