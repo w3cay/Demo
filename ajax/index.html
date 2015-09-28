@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ajax</title>
+	<meta charset= "utf-8"/>
+</head>
+<body>
+<button onclick="getContent()">Get</button>
+<span id="content"></span>
+</body>
+<script type="text/javascript">
+
+function getContent() {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET","get.php","ture");
+	xhr.send();
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState===4&&xhr.status===200){
+			var id= document.getElementById("content");
+			var data = JSON.parse(xhr.responseText);
+			console.log(data.name);
+		}
+	}
+}
+
+
+	
+</script>
+</html>

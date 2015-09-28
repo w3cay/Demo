@@ -1,0 +1,37 @@
+ body{
+        margin:50px;
+        font-family:"微软雅黑";
+        }
+        .section{
+            padding:20px;
+        margin:auto;
+        width:500px;
+        color:#000;
+        border:1px solid;
+/*        overflow:hidden; 
+        zoom:1;*/
+        }
+        .section p{
+            margin:0px;
+        }
+        .float-ele{
+        width:200px;
+        height:200px;
+        border:1px solid;
+        float:left;
+        text-align:center;
+        line-height:200px;
+        background: rgb(156, 72, 72);
+        }
+        .content{
+        width:200px;
+        height:200px;
+        border:1px solid;
+        float:right;
+        text-align:center;
+        line-height:200px;
+        background:rgba(3, 255, 180, 0.2);
+        }
+        .clear{
+        clear:both;
+        }

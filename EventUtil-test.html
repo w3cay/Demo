@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>EventUtil-test</title>
+</head>
+<body>
+<button id="btn">点击</button>
+</body>
+<script src="./EventUtil.js"></script>
+<script type="text/javascript">
+		var btn = document.getElementById('btn');
+		var sayHello = function () {
+			alert("Hello");
+		};
+		EventUtil.addHandler(btn,"click",sayHello);
+</script>
+</html>
