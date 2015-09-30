@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Sort</title>
+	<style type="text/css">
+	*{
+		margin:0px;
+		padding:0px;
+		font-family:"微软雅黑";
+
+	}
+	body{
+		background:#6FF6EA;
+		text-align:center;
+	}
+	#inp{
+		width:100%;
+		height:50px;
+		margin:200px auto 0px;
+		text-align:center;
+	}
+	#text{
+		width:300px;
+		height:30px;
+		font-size:16px;
+		text-align:center;
+	}
+	#sub{
+		width:100px;
+		height:34px;
+		display:inline-block;
+		margin:0px auto 50px;
+	}
+	#result{
+		color:#695858;
+		width:auto;
+		height:auto;
+		text-align:center;
+		font-size:24px;
+		font-weight:600;
+	}
+	h3{
+		font-size:18px;
+		font-weight:500;
+		margin-bottom:50px;
+		text-align:center;
+	}
+	</style>
+</head>
+<body>
+<div id="inp">
+	<input id="text" type="text" placeholder="输入一组数字序列">
+</div>
+<input id="sub" type="submit" value="排序">
+<p id="result"></p>
+</body>
+<script src="./EventUtil.js"></script>
+<script type="text/javascript">
+window.onload=function () {
+	var text = document.getElementById('text');
+	var sub  = document.getElementById('sub');
+	var resbox  = document.getElementById('result');
+	var val,arr=[];
+	sub.onclick=function () {
+			 	val = text.value;
+				arr = val.split(",");
+				var len =arr.length - 1,i;
+				for (i=0; i <=len; i++) {
+					 arr[i]= parseInt(arr[i]);  
+				}
+			   	resbox.innerHTML = quickSort(arr);
+	}; 
+
+};
+
+
+function quickSort(array) {
+	    function sort(prev, numsize) {
+	        var nonius = prev;
+	        var j = numsize - 1;
+	        var flag = array[prev];
+	        if ((numsize - prev) > 1) {
+	            while (nonius < j) {
+	                for (; nonius < j; j--) {
+	                    if (array[j] < flag) {
+	                        array[nonius++] = array[j];　
+	                        break;
+	                    }
+	                }
+	                for (; nonius < j; nonius++) {
+	                    if (array[nonius] > flag) {
+	                        array[j--] = array[nonius];
+	                        break;
+	                    }
+	                }
+	            }
+	            array[nonius] = flag;
+	            sort(0, nonius);
+	            sort(nonius + 1, numsize);
+	        }
+	    }
+	    sort(0, array.length);
+	    return array ;
+	}
+
+</script>
+</html>
