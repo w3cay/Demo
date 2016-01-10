@@ -11,4 +11,5 @@ function f(){
 
 f();
 
+
 alert(x);
